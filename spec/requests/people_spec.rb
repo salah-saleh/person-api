@@ -3,7 +3,8 @@ require 'rails_helper'
 
 RSpec.describe 'People API', type: :request do
   # initialize test data 
-  let!(:people) { create_list(:person, 10) }
+  # let!(:people) { create_list(:person, 10) }
+  let(:people) { 10.times.map { |i| Person.create!(name: "potluck", hobbies: "football bla", birthday: "Oct 30th 2017") } }
   let(:person_id) { people.first.id }
 
   # Test suite for GET /people
@@ -13,7 +14,7 @@ RSpec.describe 'People API', type: :request do
 
     it 'returns people' do
       # Note `json` is a custom helper to parse JSON responses
-      expect(json).not_to be_empty
+      # expect(json).not_to be_empty
       expect(json.size).to eq(10)
     end
 
@@ -45,7 +46,7 @@ RSpec.describe 'People API', type: :request do
       end
 
       it 'returns a not found message' do
-        expect(response.body).to match(/Couldn't find person/)
+        expect(response.body).to match(/\"message\":\"Couldn't find Person with 'id'=100\"/)
       end
     end
   end
@@ -76,7 +77,7 @@ RSpec.describe 'People API', type: :request do
 
       it 'returns a validation failure message' do
         expect(response.body)
-          .to match(/Validation failed: Created by can't be blank/)
+          .to match(/\"message\":\"Validation failed: Birthday can't be blank\"/)
       end
     end
   end
