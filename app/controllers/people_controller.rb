@@ -4,7 +4,11 @@ class PeopleController < ApplicationController
   # GET /people
   def index
     @people = Person.all
-    json_response(@people)
+    if params[:filter] == 'total_age'
+      json_response({ total_age: Person.total_age })
+    else
+      json_response(@people)
+    end
   end
 
   # POST /people
