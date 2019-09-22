@@ -21,6 +21,8 @@ Bundler.require(*Rails.groups)
 
 module PersonsApi
   class Application < Rails::Application
+    # include lib dir
+    config.autoload_paths << Rails.root.join('lib')
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
