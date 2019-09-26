@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   Rails.application.routes.draw do
     resources :people
-    resources :users, only: [:create]
+    resources :users, only: [:create, :index]
     post 'authenticate', to: 'users#authenticate'
   end
 end

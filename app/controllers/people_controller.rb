@@ -1,4 +1,5 @@
 class PeopleController < ApplicationController
+  # https://scotch.io/tutorials/build-a-restful-json-api-with-rails-5-part-one
   before_action :set_person, only: [:show, :update, :destroy]
 
   # GET /people
@@ -13,7 +14,6 @@ class PeopleController < ApplicationController
 
   # POST /people
   def create
-    p 'person', person_params
     @person = Person.create!(person_params)
     json_response(@person, :created)
   end

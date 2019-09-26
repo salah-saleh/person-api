@@ -1,6 +1,6 @@
 class Person < ApplicationRecord
-  # validation
   validates_presence_of :name, :birthday
+  validates :name, :format => {:with => /([\w\-\']{2,})([\s]+)([\w\-\']{2,})/}
 
   def age
     age = Date.today.year - self.birthday.year
