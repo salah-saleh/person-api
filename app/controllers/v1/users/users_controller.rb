@@ -13,7 +13,8 @@ module V1
         command = AuthenticateUser.call(params[:email], params[:password])
 
         if command.success?
-          render json: { auth_token: command.result }
+          response.headers['access-token'] = command.result
+          json_response(User.find_by(email: params[:email]))
         else
           render json: { error: command.errors }, status: :unauthorized
         end

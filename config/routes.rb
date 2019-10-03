@@ -23,7 +23,7 @@ Rails.application.routes.draw do
         resources :movies, :controller => "movies", only: [:index, :create]
         resources :ratings, :controller => "ratings", only: [:index]
       end
-      post 'authenticate', to: 'users#authenticate'
+      post 'users/authenticate', to: 'users#authenticate'
     end
 
   end
