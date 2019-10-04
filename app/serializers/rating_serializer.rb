@@ -1,3 +1,3 @@
-class PersonSerializer < ActiveModel::Serializer
-  attributes :id, :name, :birthday, :hobbies, :age
+class RatingSerializer < ActiveModel::Serializer
+  attributes :id, :score
 end
